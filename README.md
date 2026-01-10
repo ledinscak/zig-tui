@@ -128,6 +128,37 @@ zig build run-boxes_demo     # Box drawing demo
 | lines_demo | Line drawing characters |
 | boxes_demo | Box drawing styles |
 
+## Demo Previews
+
+### Menu
+
+```
+┌────────────────────────────┐
+│ New File                   │
+│ Open File                  │
+│ Save                       │
+│ Save As...                 │
+│ ─────────────────────────  │
+│ Settings                   │
+│ ─────────────────────────  │
+│ Quit                       │
+└────────────────────────────┘
+```
+
+### Table
+
+```
+┌────────┬───────────────┬─────────────┬──────────┬────────┐
+│   ID   │ Name          │ Role        │  Status  │  Score │
+├────────┼───────────────┼─────────────┼──────────┼────────┤
+│      1 │ Alice Johnson │ Developer   │  Active  │     95 │
+│      2 │ Bob Smith     │ Designer    │  Active  │     88 │
+│      3 │ Carol White   │ Manager     │   Away   │     92 │
+│      4 │ David Brown   │ Developer   │  Active  │     87 │
+│      5 │ Eve Davis     │ QA Engineer │   Busy   │     91 │
+└────────┴───────────────┴─────────────┴──────────┴────────┘
+```
+
 ## Box Styles
 
 ```
