@@ -113,4 +113,4 @@ heavy:   ┏━━┓    dashed:  ┌┄┄┐    dotted:  ┌┈┈┐
 
 ## License
 
-MIT
+[MIT](LICENSE)
