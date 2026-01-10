@@ -31,7 +31,7 @@ A terminal user interface (TUI) library for Zig.
 
 ## Dependencies
 
-- [zig-terminal](../zig-terminal) - Terminal I/O library
+- [zig-terminal](https://github.com/ledinscak/zig-terminal) - Terminal I/O library
 
 ## Installation
 
@@ -40,7 +40,8 @@ Add to your `build.zig.zon`:
 ```zig
 .dependencies = .{
     .zig_tui = .{
-        .path = "path/to/zig-tui",
+        .url = "https://github.com/ledinscak/zig-tui/archive/refs/tags/VERSION.tar.gz",
+        .hash = "...", // zig build will provide the correct hash
     },
 },
 ```

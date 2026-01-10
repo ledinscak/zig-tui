@@ -6,7 +6,8 @@
 
     .dependencies = .{
         .zig_terminal = .{
-            .path = "../zig-terminal",
+            .url = "https://github.com/ledinscak/zig-terminal/archive/refs/tags/v0.3.0.tar.gz",
+            .hash = "zig_terminal-0.1.0-bfxOCX1jAABhPR1ohrC2umvjF7OSWWvTQs1SOpnnT99u",
         },
     },
 
