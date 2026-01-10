@@ -2,33 +2,6 @@
 
 A terminal user interface (TUI) library for Zig.
 
-## Features
-
-- **Screen buffer** with double-buffering for flicker-free rendering
-- **Box drawing** with multiple character sets (single, double, rounded, heavy, dashed, dotted, block, braille)
-- **Style system** with colors (16 + 256 + RGB) and attributes (bold, italic, underline, etc.)
-- **Widget collection** for building interactive terminal applications
-
-## Widgets
-
-| Widget | Description |
-|--------|-------------|
-| Modal | Dialog boxes with icons, buttons, and customizable styling |
-| Menu | Selectable menu with keyboard navigation |
-| Table | Data table with columns and rows |
-| List | Scrollable list widget |
-| Box | Container with border styles |
-| Text | Static text display |
-| TextInput | Text input field |
-| ProgressBar | Progress indicator |
-
-## Modal Features
-
-- Emoji icons with proper wide character handling (💡 ⚠️ ⛔ ❔ 🎉)
-- Button presets: `ok`, `ok_cancel`, `yes_no`, `yes_no_cancel`, `retry_cancel`, `save_discard_cancel`
-- Multiple box styles with matching T-connectors for separator lines
-- Shadow effect and keyboard navigation
-
 ## Dependencies
 
 - [zig-terminal](https://github.com/ledinscak/zig-terminal) - Terminal I/O library
@@ -84,6 +57,33 @@ pub fn main() !void {
     try app.run();
 }
 ```
+
+## Features
+
+- **Screen buffer** with double-buffering for flicker-free rendering
+- **Box drawing** with multiple character sets (single, double, rounded, heavy, dashed, dotted, block, braille)
+- **Style system** with colors (16 + 256 + RGB) and attributes (bold, italic, underline, etc.)
+- **Widget collection** for building interactive terminal applications
+
+## Widgets
+
+| Widget | Description |
+|--------|-------------|
+| Modal | Dialog boxes with icons, buttons, and customizable styling |
+| Menu | Selectable menu with keyboard navigation |
+| Table | Data table with columns and rows |
+| List | Scrollable list widget |
+| Box | Container with border styles |
+| Text | Static text display |
+| TextInput | Text input field |
+| ProgressBar | Progress indicator |
+
+## Modal Features
+
+- Emoji icons with proper wide character handling (💡 ⚠️ ⛔ ❔ 🎉)
+- Button presets: `ok`, `ok_cancel`, `yes_no`, `yes_no_cancel`, `retry_cancel`, `save_discard_cancel`
+- Multiple box styles with matching T-connectors for separator lines
+- Shadow effect and keyboard navigation
 
 ## Examples
 
