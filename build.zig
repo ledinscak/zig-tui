@@ -30,6 +30,9 @@ pub fn build(b: *std.Build) void {
         "modal_demo",
     };
 
+    // Step to build all examples at once
+    const examples_step = b.step("examples", "Build all examples");
+
     for (examples) |example_name| {
         const example = b.addExecutable(.{
             .name = example_name,
@@ -44,6 +47,9 @@ pub fn build(b: *std.Build) void {
 
         const install_example = b.addInstallArtifact(example, .{});
         b.step(b.fmt("example-{s}", .{example_name}), b.fmt("Build the {s} example", .{example_name})).dependOn(&install_example.step);
+
+        // Add to examples step
+        examples_step.dependOn(&install_example.step);
 
         const run_example = b.addRunArtifact(example);
         b.step(b.fmt("run-{s}", .{example_name}), b.fmt("Run the {s} example", .{example_name})).dependOn(&run_example.step);

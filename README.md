@@ -87,7 +87,24 @@ pub fn main() !void {
 
 ## Examples
 
-Build and run examples:
+### Quick Start
+
+Build all examples at once:
+
+```bash
+zig build examples
+```
+
+Executables will be in `zig-out/bin/`. Run any example:
+
+```bash
+./zig-out/bin/modal_demo
+./zig-out/bin/hello
+```
+
+### Build and Run Directly
+
+Run an example without keeping the executable:
 
 ```bash
 zig build run-hello          # Basic hello world
@@ -98,6 +115,18 @@ zig build run-style_demo     # Style and color demo
 zig build run-lines_demo     # Line drawing demo
 zig build run-boxes_demo     # Box drawing demo
 ```
+
+### Available Examples
+
+| Example | Description |
+|---------|-------------|
+| hello | Basic "Hello World" TUI app |
+| modal_demo | Modal dialogs with icons and buttons |
+| menu_demo | Interactive menu navigation |
+| table_demo | Data table display |
+| style_demo | Colors and text styling |
+| lines_demo | Line drawing characters |
+| boxes_demo | Box drawing styles |
 
 ## Box Styles
 
