@@ -2,7 +2,6 @@
 //!
 //! Demonstrates text styling, colors, and widgets.
 
-const std = @import("std");
 const tui = @import("tui");
 
 const State = struct {
@@ -25,13 +24,10 @@ const list_items = [_][]const u8{
 };
 
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-    const allocator = gpa.allocator();
+    try tui.App.run(setup, .{ .fps = 30 });
+}
 
-    var app = try tui.App.init(allocator, .{ .fps = 30 });
-    defer app.deinit();
-
+fn setup(app: *tui.App) !void {
     var state = State{
         .progress_bar = tui.ProgressBar.init()
             .withBarStyle(.block)
@@ -50,7 +46,7 @@ pub fn main() !void {
     app.setOnDraw(draw);
     app.setOnKey(handleKey);
 
-    try app.run();
+    try app.start();
 }
 
 fn draw(app: *tui.App, screen: *tui.Screen, area: tui.Rect) !void {

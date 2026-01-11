@@ -62,6 +62,34 @@ pub fn deinit(self: *App) void {
     self.allocator.free(self.term_buffer);
 }
 
+/// Convenience function to run an app with managed allocator.
+///
+/// This handles allocator setup, app initialization, and cleanup.
+/// The setup function should set callbacks and call `app.start()`.
+///
+/// Example:
+/// ```zig
+/// pub fn main() !void {
+///     try tui.App.run(setup, .{ .fps = 30 });
+/// }
+///
+/// fn setup(app: *tui.App) !void {
+///     app.setOnDraw(draw);
+///     app.setOnKey(handleKey);
+///     try app.start();
+/// }
+/// ```
+pub fn run(comptime setup: fn (*App) anyerror!void, config: Config) !void {
+    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    defer _ = gpa.deinit();
+    const allocator = gpa.allocator();
+
+    var app = try App.init(allocator, config);
+    defer app.deinit();
+
+    try setup(&app);
+}
+
 /// Set the init callback
 pub fn setOnInit(self: *App, callback: *const fn (*App) anyerror!void) void {
     self.on_init = callback;
@@ -82,8 +110,8 @@ pub fn setOnResize(self: *App, callback: *const fn (*App, u16, u16) anyerror!voi
     self.on_resize = callback;
 }
 
-/// Run the application main loop
-pub fn run(self: *App) !void {
+/// Start the application main loop
+pub fn start(self: *App) !void {
     try self.term.open();
     defer self.term.close();
 

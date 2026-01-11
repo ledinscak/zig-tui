@@ -24,13 +24,10 @@ const ModalType = enum {
 };
 
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-    const allocator = gpa.allocator();
+    try tui.App.run(setup, .{ .fps = 30 });
+}
 
-    var app = try tui.App.init(allocator, .{ .fps = 30 });
-    defer app.deinit();
-
+fn setup(app: *tui.App) !void {
     var state = State{
         .modal = createModal(.confirm),
     };
@@ -39,7 +36,7 @@ pub fn main() !void {
     app.setOnDraw(draw);
     app.setOnKey(handleKey);
 
-    try app.run();
+    try app.start();
 }
 
 fn createModal(modal_type: ModalType) tui.Modal {

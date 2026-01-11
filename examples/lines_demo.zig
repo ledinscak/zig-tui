@@ -2,21 +2,16 @@
 //!
 //! Demonstrates all line drawing styles.
 
-const std = @import("std");
 const tui = @import("tui");
 
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-    const allocator = gpa.allocator();
+    try tui.App.run(setup, .{ .fps = 30 });
+}
 
-    var app = try tui.App.init(allocator, .{ .fps = 30 });
-    defer app.deinit();
-
+fn setup(app: *tui.App) !void {
     app.setOnDraw(draw);
     app.setOnKey(handleKey);
-
-    try app.run();
+    try app.start();
 }
 
 fn draw(_: *tui.App, screen: *tui.Screen, area: tui.Rect) !void {

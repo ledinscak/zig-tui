@@ -2,8 +2,8 @@
 //!
 //! Demonstrates the Menu widget with keyboard navigation.
 
-const std = @import("std");
 const tui = @import("tui");
+const std = @import("std");
 
 const State = struct {
     menu: tui.Menu,
@@ -22,13 +22,10 @@ const menu_items = [_]tui.Menu.Item{
 };
 
 pub fn main() !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-    const allocator = gpa.allocator();
+    try tui.App.run(setup, .{ .fps = 30 });
+}
 
-    var app = try tui.App.init(allocator, .{ .fps = 30 });
-    defer app.deinit();
-
+fn setup(app: *tui.App) !void {
     var state = State{
         .menu = tui.Menu.init(&menu_items)
             .withStyle(tui.Style.fg(tui.Color.white))
@@ -39,7 +36,7 @@ pub fn main() !void {
     app.setOnDraw(draw);
     app.setOnKey(handleKey);
 
-    try app.run();
+    try app.start();
 }
 
 fn draw(app: *tui.App, screen: *tui.Screen, area: tui.Rect) !void {
