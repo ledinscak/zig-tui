@@ -25,7 +25,7 @@ fn draw(_: *tui.App, screen: *tui.Screen, area: tui.Rect) !void {
     screen.box(box_area, tui.Screen.BoxChars.rounded);
 
     // Draw title
-    const title = " Hello, zig-tui! ";
+    const title = "Hello, zig-tui!";
     const title_x = box_area.x + (box_area.width - @as(u16, @intCast(title.len))) / 2;
     screen.setStyle(tui.Style.fg(tui.Color.yellow).withBold());
     screen.writeStr(title_x, box_area.y, title);
