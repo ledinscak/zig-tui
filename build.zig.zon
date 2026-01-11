@@ -6,8 +6,8 @@
 
     .dependencies = .{
         .zig_terminal = .{
-            .url = "https://github.com/ledinscak/zig-terminal/archive/refs/tags/v0.3.0.tar.gz",
-            .hash = "zig_terminal-0.1.0-bfxOCX1jAABhPR1ohrC2umvjF7OSWWvTQs1SOpnnT99u",
+            .url = "https://github.com/ledinscak/zig-terminal/archive/refs/tags/v0.4.0.tar.gz",
+            .hash = "zig_terminal-0.1.0-bfxOCblzAADu0Ea3Rc7S6-xrR_mhS_uqVr-ZjCkA8McA",
         },
     },
 

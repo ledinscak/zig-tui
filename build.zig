@@ -19,25 +19,27 @@ pub fn build(b: *std.Build) void {
     });
     tui_module.addImport("terminal", terminal_module);
 
-    // Examples
-    const examples = [_][]const u8{
-        "hello",
-        "menu_demo",
-        "style_demo",
-        "table_demo",
-        "lines_demo",
-        "boxes_demo",
-        "modal_demo",
+    // Examples: { step_name, source_file }
+    const examples = [_]struct { []const u8, []const u8 }{
+        .{ "hello", "hello" },
+        .{ "menu-demo", "menu_demo" },
+        .{ "style-demo", "style_demo" },
+        .{ "table-demo", "table_demo" },
+        .{ "lines-demo", "lines_demo" },
+        .{ "boxes-demo", "boxes_demo" },
+        .{ "modal-demo", "modal_demo" },
+        .{ "mouse-demo", "mouse_demo" },
     };
 
     // Step to build all examples at once
     const examples_step = b.step("examples", "Build all examples");
 
-    for (examples) |example_name| {
+    for (examples) |entry| {
+        const step_name, const source_name = entry;
         const example = b.addExecutable(.{
-            .name = example_name,
+            .name = step_name,
             .root_module = b.createModule(.{
-                .root_source_file = b.path(b.fmt("examples/{s}.zig", .{example_name})),
+                .root_source_file = b.path(b.fmt("examples/{s}.zig", .{source_name})),
                 .target = target,
                 .optimize = optimize,
             }),
@@ -46,13 +48,13 @@ pub fn build(b: *std.Build) void {
         example.root_module.addImport("terminal", terminal_module);
 
         const install_example = b.addInstallArtifact(example, .{});
-        b.step(b.fmt("example-{s}", .{example_name}), b.fmt("Build the {s} example", .{example_name})).dependOn(&install_example.step);
+        b.step(step_name, b.fmt("Build the {s} example", .{step_name})).dependOn(&install_example.step);
 
         // Add to examples step
         examples_step.dependOn(&install_example.step);
 
         const run_example = b.addRunArtifact(example);
-        b.step(b.fmt("run-{s}", .{example_name}), b.fmt("Run the {s} example", .{example_name})).dependOn(&run_example.step);
+        b.step(b.fmt("run-{s}", .{step_name}), b.fmt("Run the {s} example", .{step_name})).dependOn(&run_example.step);
     }
 
     // Tests
